@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algoritmica | Automated LMS Diagnostics Engine</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+    
+    :root {
+      --bg-canvas: #080b11;
+      --bg-card: rgba(13, 19, 33, 0.45);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      --color-primary: #6366f1;
+      --color-secondary: #06b6d4;
+      --color-success: #10b981;
+      --color-error: #f43f5e;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 700px;
+      width: 100%;
+    }
+    
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff, var(--text-secondary), var(--color-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 1.5rem;
+    }
+    
+    .test-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    
+    .test-row:last-child {
+      border-bottom: none;
+    }
+    
+    .test-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .test-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    
+    .test-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .badge-pass {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--color-success);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    
+    .badge-fail {
+      background: rgba(244, 63, 94, 0.1);
+      color: var(--color-error);
+      border: 1px solid rgba(244, 63, 94, 0.2);
+    }
+    
+    pre {
+      background: #05070a;
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e9f0;
+      overflow-x: auto;
+      max-height: 250px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-primary), #a855f7);
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
+      transition: all 0.2s ease;
+      margin-top: 1rem;
+    }
+    
+    .btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Automated LMS Diagnostics</h1>
+    <p class="subtitle">Verifying Class Creation & Enrollment Engines</p>
+    
+    <!-- Checklist -->
+    <div class="card">
+      <h3 style="margin-top:0; font-family:'Outfit'; font-size:1.3rem; margin-bottom:1rem;">Automated Verification Checklist</h3>
+      
+      <div class="test-row">
+        <div class="test-info">
+          <span class="test-name">Test 1: Create New Class</span>
+          <span class="test-desc">Spawns a new class record and sets it as the active class.</span>
+        </div>
+        <span class="badge" id="test-1-badge">Pending</span>
+      </div>
+      
+      <div class="test-row">
+        <div class="test-info">
+          <span class="test-name">Test 2: Register New Student</span>
+          <span class="test-desc">Creates a student record and auto-enrolls them in the active class.</span>
+        </div>
+        <span class="badge" id="test-2-badge">Pending</span>
+      </div>
+      
+      <div class="test-row">
+        <div class="test-info">
+          <span class="test-name">Test 3: Teacher Roster Enrollment</span>
+          <span class="test-desc">Enrolls a student profile directly into a specific class roster.</span>
+        </div>
+        <span class="badge" id="test-3-badge">Pending</span>
+      </div>
+    </div>
+    
+    <!-- LocalStorage State View -->
+    <div class="card">
+      <h3 style="margin-top:0; font-family:'Outfit'; font-size:1.3rem; margin-bottom:0.75rem;">Produced Database State</h3>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem; line-height:1.4;">
+        Below is the real-time snapshot of the database state saved to <code>localStorage</code>, verifying correct operations.
+      </p>
+      <pre id="db-state-view">// Diagnostics pending...</pre>
+    </div>
+    
+    <button class="btn" onclick="runLMSDiagnostics()">🚀 Re-run Diagnostic Tests</button>
+  </div>
+
+  <!-- Load Database Coordinator -->
+  <script src="database.js"></script>
+  
+  <script>
+    function runLMSDiagnostics() {
+      console.log("Starting LMS automated diagnostics...");
+      
+      // 1. Clear database state to start with fresh defaults
+      db.resetDatabase();
+      
+      // Select badge elements
+      const badge1 = document.getElementById("test-1-badge");
+      const badge2 = document.getElementById("test-2-badge");
+      const badge3 = document.getElementById("test-3-badge");
+      const stateView = document.getElementById("db-state-view");
+      
+      let test1Passed = false;
+      let test2Passed = false;
+      let test3Passed = false;
+      
+      // --- TEST 1: CREATE NEW CLASS ---
+      try {
+        const testClassName = "Grade 8 Computing (Gamma)";
+        const newClassId = db.createClass(testClassName);
+        
+        const classes = db.getAllClasses();
+        const createdClass = classes.find(c => c.id === newClassId);
+        const activeClassId = db.getActiveClassId();
+        
+        if (createdClass && createdClass.name === testClassName && activeClassId === newClassId) {
+          test1Passed = true;
+          badge1.className = "badge badge-pass";
+          badge1.innerText = "PASSED";
+        } else {
+          badge1.className = "badge badge-fail";
+          badge1.innerText = "FAILED";
+        }
+      } catch (err) {
+        console.error("Test 1 Error: ", err);
+        badge1.className = "badge badge-fail";
+        badge1.innerText = "ERROR";
+      }
+      
+      // --- TEST 2: REGISTER NEW STUDENT ---
+      try {
+        const testStudentName = "Elizabeth Vance";
+        const studentId = db.registerStudent(testStudentName);
+        
+        const activeStudent = db.getCurrentUser();
+        const activeClassId = db.getActiveClassId();
+        const studentsInClass = db.getStudentsInClass(activeClassId);
+        const enrolledInClass = studentsInClass.find(s => s.id === studentId);
+        
+        if (activeStudent && activeStudent.name === testStudentName && enrolledInClass) {
+          test2Passed = true;
+          badge2.className = "badge badge-pass";
+          badge2.innerText = "PASSED";
+        } else {
+          badge2.className = "badge badge-fail";
+          badge2.innerText = "FAILED";
+        }
+      } catch (err) {
+        console.error("Test 2 Error: ", err);
+        badge2.className = "badge badge-fail";
+        badge2.innerText = "ERROR";
+      }
+      
+      // --- TEST 3: TEACHER ROSTER ENROLLMENT ---
+      try {
+        const activeClassId = db.getActiveClassId();
+        const enrolledStudentName = "Gordon Freeman";
+        
+        const studentId = db.addStudentToClass(enrolledStudentName, activeClassId);
+        
+        const studentsInClass = db.getStudentsInClass(activeClassId);
+        const enrolledInClass = studentsInClass.find(s => s.id === studentId);
+        
+        if (enrolledInClass && enrolledInClass.name === enrolledStudentName) {
+          test3Passed = true;
+          badge3.className = "badge badge-pass";
+          badge3.innerText = "PASSED";
+        } else {
+          badge3.className = "badge badge-fail";
+          badge3.innerText = "FAILED";
+        }
+      } catch (err) {
+        console.error("Test 3 Error: ", err);
+        badge3.className = "badge badge-fail";
+        badge3.innerText = "ERROR";
+      }
+      
+      // --- VIEW STATE ---
+      const dataState = localStorage.getItem("algoritmica_database_state");
+      if (dataState) {
+        const parsed = JSON.parse(dataState);
+        stateView.innerText = JSON.stringify(parsed, null, 2);
+      }
+    }
+    
+    // Auto-run on page load
+    window.addEventListener("DOMContentLoaded", runLMSDiagnostics);
+  </script>
+
+</body>
+</html>
