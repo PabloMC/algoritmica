@@ -1064,7 +1064,7 @@ window.openTeacherAuthModal = function (onSuccess) {
         </p>
         <div class="margin-bottom-sm">
           <label style="font-size:0.75rem; color:var(--text-secondary); font-weight:700; display:block; margin-bottom:0.35rem; letter-spacing:0.05em;">TEACHER ACCESS PIN</label>
-          <input type="password" id="teacher-pin-input" placeholder="Enter PIN (For testing: 1234)" style="width:100%; background:#05070a; border:1px solid var(--border-glass); border-radius:var(--radius-sm); padding:0.6rem 1rem; color:white; outline:none; font-size:1.1rem; text-align:center; letter-spacing:0.1em;" autofocus>
+          <input type="password" id="teacher-pin-input" placeholder="Enter PIN" style="width:100%; background:#05070a; border:1px solid var(--border-glass); border-radius:var(--radius-sm); padding:0.6rem 1rem; color:white; outline:none; font-size:1.1rem; text-align:center; letter-spacing:0.1em;" autofocus>
           <div id="teacher-pin-error" style="color:var(--color-error); font-size:0.8rem; margin-top:0.45rem; font-weight:600; display:none; animation:slideIn 0.2s ease;"></div>
         </div>
         <button class="btn btn-primary" id="teacher-pin-submit-btn" style="width:100%; justify-content:center; margin-top:0.5rem; box-shadow:var(--shadow-glow);">
