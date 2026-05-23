@@ -1011,7 +1011,7 @@ window.openRegisterStudentModal = function () {
         </p>
         <div class="margin-bottom-sm">
           <label style="font-size:0.8rem; color:var(--text-secondary); font-weight:600; display:block; margin-bottom:0.35rem;">YOUR FULL NAME</label>
-          <input type="text" id="register-modal-name-input" placeholder="e.g. Liam O'Connor" style="width:100%; background:#05070a; border:1px solid var(--border-glass); border-radius:var(--radius-sm); padding:0.6rem 1rem; color:white; outline:none; font-size:0.95rem;">
+          <input type="text" id="register-modal-name-input" placeholder="e.g. Grace Hopper" style="width:100%; background:#05070a; border:1px solid var(--border-glass); border-radius:var(--radius-sm); padding:0.6rem 1rem; color:white; outline:none; font-size:0.95rem;">
         </div>
         <button class="btn btn-primary" id="register-modal-submit-btn" style="width:100%; justify-content:center; margin-top:0.5rem;">
           Register & Start Coding
